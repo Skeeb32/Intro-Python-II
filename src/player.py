@@ -3,8 +3,18 @@
 from room import Room
 
 class Player:
-    def __init__(self, current_room):
+    def __init__(self, current_room, inventory=None):
         self.current_room = current_room
+        if inventory is None:
+            self.inventory = []
+        else:
+            self.inventory = inventory
+    
+    def takeItem(self, item):
+        self.inventory.append(item)
+    
+    def dropItem(self, item):
+        self.inventory.remove(item)
 
     def go_north(self):
         if self.current_room.n_to != None:
